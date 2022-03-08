@@ -10,12 +10,12 @@ app.use(express.json())
 const PORT = 4000;
 
 app.get('/users', async (req, res) => {
-    const users = await prisma.user.findMany({ include: { hobby: true } })
+    const users = await prisma.user.findMany({ include: { hobbies: { select: { name: true } } } })
     res.send(users)
 })
 
 app.get('/hobbies', async (req, res) => {
-    const hobbies = await prisma.hobby.findMany({ include: { userHobby: true } })
+    const hobbies = await prisma.hobby.findMany({ include: { user: { select: { name: true, photo: true } } } })
     res.send(hobbies)
 })
 

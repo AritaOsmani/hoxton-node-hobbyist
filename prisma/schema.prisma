@@ -11,25 +11,26 @@ datasource db {
 }
 
 model User {
-  id    Int         @id @default(autoincrement())
-  email String      @unique
-  name  String
-  photo String
-  hobby UserHobby[]
+  id      Int     @id @default(autoincrement())
+  email   String  @unique
+  name    String
+  photo   String
+  hobbies Hobby[]
 }
 
 model Hobby {
-  id        Int         @id @default(autoincrement())
-  name      String      @unique
-  image     String
-  userHobby UserHobby[]
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  image  String
+  active Boolean
+  user   User[]
 }
 
-model UserHobby {
-  id      Int     @id @default(autoincrement())
-  user    User    @relation(fields: [userId], references: [id])
-  hobby   Hobby   @relation(fields: [hobbyId], references: [id])
-  active  Boolean
-  userId  Int
-  hobbyId Int
-}
+// model UserHobby {
+//   id      Int     @id @default(autoincrement())
+//   user    User    @relation(fields: [userId], references: [id])
+//   hobby   Hobby   @relation(fields: [hobbyId], references: [id])
+//   active  Boolean
+//   userId  Int
+//   hobbyId Int
+// }
